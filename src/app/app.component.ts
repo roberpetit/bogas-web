@@ -34,11 +34,11 @@ export class AppComponent implements OnInit {
       })
     });
 
-    client.send(new GetObjectCommand({Bucket: 'santoscafe', Key: 'pag1.jpg'})).then((data) => {
+    client.send(new GetObjectCommand({Bucket: 'santoscafe', Key: 'pag1.jpeg'})).then((data) => {
         console.log("Data 1: ", data);
       });
 
-      client.send(new GetObjectCommand({Bucket: 'santoscafe', Key: 'pag2.jpg'})).then((data) => {
+      client.send(new GetObjectCommand({Bucket: 'santoscafe', Key: 'pag2.jpeg'})).then((data) => {
         console.log("Data 2: ", data);
       });
   }
