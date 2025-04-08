@@ -1,6 +1,6 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSidenav, MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list'
 import { MatButton } from '@angular/material/button';
 import { CarouselComponent } from './components/carousel/carousel.component';
@@ -15,10 +15,15 @@ import { FooterComponent } from "./components/footer/footer.component";
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  @ViewChild('sidenav') sidenav!: MatSidenav;
+  @ViewChild('sidenav2') sidenav2!: MatSidenav;
+
   constructor(private elementRef: ElementRef<HTMLElement>) {}
-  title = 'bogas-web';
+  title = 'santos-cafe';
 
   scroll(el: HTMLElement) {
+    this.sidenav.close();
+    this.sidenav2.close();
     el.scrollIntoView();
     console.log("Scrolling to " + el.innerText)
   }

@@ -1,54 +1,43 @@
 
 <div class="content" role="main" >
   <app-toolbar (button1)="sidenav.toggle()" (button2)="sidenav2.toggle()" class="fixed-header"></app-toolbar>
-  <mat-sidenav-container fxFlexFill style="height: 1400px">
-    <mat-sidenav #sidenav style="height: 260px; width: 150px;" >
+  <mat-sidenav-container fxFlexFill style="height: 1200px">
+    <mat-sidenav #sidenav style="height: 160px; width: 150px;" autosize mode="over" position="start" >
       <mat-nav-list>
-        <a (click)="scroll(info)" mat-list-item>Info</a>
-        <a (click)="scroll(details)" mat-list-item>Details</a>
-        <a (click)="scroll(details)" mat-list-item>Examples</a>
-        <a (click)="scroll(contact)" mat-list-item>Contact</a>
-        <a (click)="scroll(footer)" mat-list-item>Footer</a>
+        <a (click)="scroll(dulce)" mat-list-item>Dulce</a>
+        <a (click)="scroll(salado)" mat-list-item>Salado</a>
+        <a (click)="scroll(infusiones)" mat-list-item>Infusiones</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav #sidenav2 style="height: 160px; width: 160px;" autosize position="end" >
+      <mat-nav-list>
+        <a (click)="scroll(dulce)" mat-list-item>Dulce</a>
+        <a (click)="scroll(salado)" mat-list-item>Salado</a>
+        <a (click)="scroll(infusiones)" mat-list-item>Infusiones</a>
         <!-- <a (click)="sidenav.toggle()" href="" mat-list-item>Close
           </a> -->
       </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav #sidenav2 style="height: 160px; width: 160px;" position="end" >
-      <mat-nav-list>
-        <a (click)="scroll(info)" mat-list-item>Profile</a>
-        <a (click)="scroll(details)" mat-list-item>Config</a>
-        <a (click)="scroll(details)" mat-list-item>Logout</a>
-        <!-- <a (click)="sidenav.toggle()" href="" mat-list-item>Close
-          </a> -->
-      </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content >
-      <div class="main">
+    <mat-sidenav-content>
+      <div #footer class="main">
 
         <!-- Main content -->
         <br />
-        <div #info class="title">
-          Info
+        <div #dulce class="item">
+          <img src="./pag1.jpeg"/>
         </div>
-        <div class="item">
-          <app-carousel [randomizer]="165"/>
+        <div #salado class="item">
+          <img src="./pag2.jpeg"/>
         </div>
-        <div #details class="title">
-          Details
+        <div #infusiones class="item">
+          <img src="./pag3.jpeg"/>
         </div>
-        <div class="item">
-          <app-carousel [randomizer]="12"/>
-        </div>
-        <div #contact class="title">
-          Contact Information
-        </div>
-        <div #footer class="title">
-        </div>
+
+        
         <router-outlet></router-outlet>
 
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
-  <app-footer #footer></app-footer>
 
 </div>
