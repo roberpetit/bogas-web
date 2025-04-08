@@ -6,7 +6,7 @@ import { MatButton } from '@angular/material/button';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
-import { S3Client, ListBucketsCommand, GetObjectCommand, CreateBucketCommand } from "@aws-sdk/client-s3";
+import { S3Client, ListBucketsCommand, GetObjectCommand } from "@aws-sdk/client-s3";
 import {fromCognitoIdentityPool} from "@aws-sdk/credential-providers";
 
 export const REGION = "us-east-2";
@@ -27,15 +27,21 @@ export class AppComponent implements OnInit {
   constructor(private elementRef: ElementRef<HTMLElement>) {}
 
   ngOnInit(): void {
-    const client = new S3Client({ region: REGION,
+    const client = new S3Client({ region: "us-east-1",
       credentials: fromCognitoIdentityPool({
-        clientConfig: { region: REGION }, 
+        clientConfig: { region: "us-east-2" }, 
         identityPoolId: 'us-east-2:034028c7-b225-4f50-8d10-ff7d179d024a',
       })
     });
 
-    client.send(new GetObjectCommand({Bucket: 'santoscafe', Key: 'pag1.jpeg'})).then((data) => {
+    client.send(new GetObjectCommand({Bucket: 'santoscafe', Key: 'menu/pag1.jpeg'})).then((data) => {
       console.log("Data 1: ", data);
+    }, error => {
+      console.error("Error: ", error);
+    });
+
+    client.send(new ListBucketsCommand({})).then((data) => {
+      console.log("Data 2: ", data);
     }, error => {
       console.error("Error: ", error);
     });
