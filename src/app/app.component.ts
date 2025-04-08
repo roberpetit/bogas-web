@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {MatSidenav, MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list'
@@ -6,6 +6,11 @@ import { MatButton } from '@angular/material/button';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
+import { S3Client, ListBucketsCommand, GetObjectCommand } from "@aws-sdk/client-s3";
+import {fromCognitoIdentityPool} from "@aws-sdk/credential-providers";
+
+export const REGION = "us-east-2";
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -14,12 +19,29 @@ import { FooterComponent } from "./components/footer/footer.component";
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   @ViewChild('sidenav') sidenav!: MatSidenav;
   @ViewChild('sidenav2') sidenav2!: MatSidenav;
+  title = 'santos-cafe';
 
   constructor(private elementRef: ElementRef<HTMLElement>) {}
-  title = 'santos-cafe';
+
+  ngOnInit(): void {
+    const client = new S3Client({ region: REGION,
+      credentials: fromCognitoIdentityPool({
+        clientConfig: { region: REGION }, 
+        identityPoolId: 'us-east-2:034028c7-b225-4f50-8d10-ff7d179d024a',
+      })
+    });
+
+    client.send(new GetObjectCommand({Bucket: 'santoscafe', Key: 'pag1.jpg'})).then((data) => {
+        console.log("Data 1: ", data);
+      });
+
+      client.send(new GetObjectCommand({Bucket: 'santoscafe', Key: 'pag2.jpg'})).then((data) => {
+        console.log("Data 2: ", data);
+      });
+  }
 
   scroll(el: HTMLElement) {
     this.sidenav.close();
