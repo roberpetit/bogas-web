@@ -6,7 +6,7 @@ import { MatButton } from '@angular/material/button';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
-import { S3Client, ListBucketsCommand, GetObjectCommand } from "@aws-sdk/client-s3";
+import { S3Client, ListBucketsCommand, GetObjectCommand, CreateBucketCommand } from "@aws-sdk/client-s3";
 import {fromCognitoIdentityPool} from "@aws-sdk/credential-providers";
 
 export const REGION = "us-east-2";
@@ -35,12 +35,11 @@ export class AppComponent implements OnInit {
     });
 
     client.send(new GetObjectCommand({Bucket: 'santoscafe', Key: 'pag1.jpeg'})).then((data) => {
-        console.log("Data 1: ", data);
-      });
+      console.log("Data 1: ", data);
+    }, error => {
+      console.error("Error: ", error);
+    });
 
-      client.send(new GetObjectCommand({Bucket: 'santoscafe', Key: 'pag2.jpeg'})).then((data) => {
-        console.log("Data 2: ", data);
-      });
   }
 
   scroll(el: HTMLElement) {
