@@ -2,35 +2,40 @@
 <div class="content" role="main" >
   <app-toolbar (button1)="sidenav.toggle()" (button2)="sidenav2.toggle()" class="fixed-header"></app-toolbar>
   <mat-sidenav-container fxFlexFill style="height: 1200px">
-    <mat-sidenav #sidenav style="height: 160px; width: 150px;" autosize mode="over" position="start" >
+    <mat-sidenav #sidenav style="height: 210px; width: 150px;" autosize mode="over" position="start" >
       <mat-nav-list>
         <a (click)="scroll(dulce)" mat-list-item>Dulce</a>
         <a (click)="scroll(salado)" mat-list-item>Salado</a>
-        <a (click)="scroll(infusiones)" mat-list-item>Infusiones</a>
+        <a (click)="scroll(infusiones1)" mat-list-item>Infusiones 1</a>
+        <a (click)="scroll(infusiones2)" mat-list-item>Infusiones 2</a>
       </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav #sidenav2 style="height: 160px; width: 160px;" autosize position="end" >
+    <mat-sidenav #sidenav2 style="height: 210px; width: 160px;" autosize position="end" >
       <mat-nav-list>
         <a (click)="scroll(dulce)" mat-list-item>Dulce</a>
         <a (click)="scroll(salado)" mat-list-item>Salado</a>
-        <a (click)="scroll(infusiones)" mat-list-item>Infusiones</a>
+        <a (click)="scroll(infusiones1)" mat-list-item>Infusiones 1 </a>
+        <a (click)="scroll(infusiones2)" mat-list-item>Infusiones 2</a>
         <!-- <a (click)="sidenav.toggle()" href="" mat-list-item>Close
           </a> -->
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <div #footer class="main">
+      <div #footer class="main container">
 
         <!-- Main content -->
         <br />
         <div #dulce class="item">
-          <img src="./pag1.jpeg"/>
+          <img src="/Men2.png"/>
         </div>
         <div #salado class="item">
-          <img src="./pag2.jpeg"/>
+          <img src="/Men1.png"/>
         </div>
-        <div #infusiones class="item">
-          <img src="./pag3.jpeg"/>
+        <div #infusiones1 class="item">
+          <img src="/Men3.png"/>
+        </div>
+        <div #infusiones2 class="item">
+          <img src="/Men4.png"/>
         </div>
 
         
